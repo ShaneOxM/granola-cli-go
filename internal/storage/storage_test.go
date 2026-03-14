@@ -195,7 +195,7 @@ func TestEmbeddingsLifecycle(t *testing.T) {
 		ID:         "m1:chunk:0",
 		MeetingID:  "m1",
 		ChunkIndex: 0,
-		ChunkText:  "matching engine waitlist summary",
+		ChunkText:  "project planning summary",
 		Embedding:  embeddings.EmbedToBlob([]float32{1, 0, 0}),
 		Dimensions: 3,
 		Provider:   "test",

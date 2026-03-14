@@ -61,10 +61,10 @@ func TestIsEmbeddingTooLong(t *testing.T) {
 
 func TestLexicalFallbackResults(t *testing.T) {
 	chunks := []embeddings.ChunkData{
-		{MeetingID: "m1", MeetingTitle: "SCS Follow-up", ChunkText: "matching engine and waitlist roadmap"},
+		{MeetingID: "m1", MeetingTitle: "Project Follow-up", ChunkText: "planning roadmap and implementation summary"},
 		{MeetingID: "m2", MeetingTitle: "Other", ChunkText: "nothing relevant here"},
 	}
-	results := lexicalFallbackResults("matching waitlist", chunks, 5)
+	results := lexicalFallbackResults("planning summary", chunks, 5)
 	if len(results) == 0 || results[0].MeetingID != "m1" {
 		t.Fatalf("unexpected fallback results: %+v", results)
 	}

@@ -245,10 +245,10 @@ func TestValidateSearch(t *testing.T) {
 
 func TestFilterMeetings(t *testing.T) {
 	meetings := []Meeting{
-		{ID: "1", Title: "SCS Follow-up", Attendees: []Person{{Email: "a@example.com"}}},
+		{ID: "1", Title: "Project Follow-up", Attendees: []Person{{Email: "a@example.com"}}},
 		{ID: "2", Title: "Other", Attendees: []Person{{Email: "b@example.com"}}},
 	}
-	filtered := filterMeetings(meetings, "scs", "")
+	filtered := filterMeetings(meetings, "project", "")
 	if len(filtered) != 1 || filtered[0].ID != "1" {
 		t.Fatalf("unexpected search filter result: %+v", filtered)
 	}

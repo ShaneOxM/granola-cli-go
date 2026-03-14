@@ -2,6 +2,22 @@
 
 A practical Go CLI for Granola meetings, Gmail, Calendar, and semantic search.
 
+[![CI](https://github.com/ShaneOxM/granola-cli-go/actions/workflows/ci.yml/badge.svg)](https://github.com/ShaneOxM/granola-cli-go/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
+
+## Important
+
+This is an unofficial, independent Granola CLI implementation. It is not
+affiliated with, endorsed by, or connected to Granola Labs, Inc. It uses your
+local Granola desktop credentials and the publicly reachable Granola APIs to
+work with your own meeting data.
+
+## Note
+
+This CLI is actively used and validated on macOS. Linux support exists for core
+Go workflows, but the most battle-tested path is macOS with the Granola desktop
+app installed.
+
 ## Features
 
 - **Meetings**: List, view, transcript, and notes for all your meetings
@@ -10,6 +26,24 @@ A practical Go CLI for Granola meetings, Gmail, Calendar, and semantic search.
 - **Calendar Integration**: List events and enrich meeting records with calendar metadata
 - **Context Management**: Attach contextual notes and track progression
 - **AI Helpers**: Summaries, actions, key takeaways, and semantic search
+
+## Table of Contents
+
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Google Setup](#google-setup)
+- [Usage](#usage)
+  - [Authentication](#authentication)
+  - [Meetings](#meetings)
+  - [Workspaces & Folders](#workspaces--folders)
+  - [Gmail](#gmail)
+  - [Calendar](#calendar)
+  - [Embeddings & Semantic Search](#embeddings--semantic-search)
+  - [Agent Workflows](#agent-workflows)
+  - [Context](#context)
+  - [Configuration](#configuration-1)
+- [Troubleshooting](#troubleshooting)
+- [Acknowledgments](#acknowledgments)
 
 ## Installation
 
@@ -41,6 +75,30 @@ cp bin/granola /usr/local/bin/
 
 # Linux
 sudo cp bin/granola /usr/local/bin/
+```
+
+## Quick Start
+
+If you already have the Granola desktop app installed locally:
+
+```bash
+# Import Granola desktop credentials
+granola auth login
+
+# Verify meetings are available
+granola meeting list --limit 5
+
+# Set up Gmail/Calendar access (recommended)
+granola gmail setup-oauth
+granola gmail login
+
+# Build semantic search coverage
+granola embedding backfill
+
+# Use the CLI
+granola search "meeting summary"
+granola gmail person someone@example.com --max=10
+granola calendar enrich-meetings
 ```
 
 ## Configuration
@@ -296,10 +354,10 @@ granola embedding reset --force
 granola embedding backfill
 
 # Semantic search across meetings
-granola search "SCS matching waitlist summary"
+granola search "meeting summary"
 
 # Search as JSON for downstream tooling
-granola search "Alyson waitlist homework insurer progress" --json
+granola search "project decisions" --json
 ```
 
 Recommended semantic workflow:
@@ -338,7 +396,7 @@ granola calendar enrich-meetings
 
 ```bash
 # Attach context
-granola context attach <meeting-id> "Important decision about Q4 roadmap"
+granola context attach <meeting-id> "Important project decision"
 
 # View progression
 granola context progression <meeting-id>
