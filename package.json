@@ -1,0 +1,81 @@
+{
+  "name": "granola-cli-go",
+  "version": "0.4.0",
+  "description": "Command-line interface for Granola meeting notes with semantic search and AI-powered features",
+  "bin": {
+    "granola": "./bin/granola"
+  },
+  "scripts": {
+    "build": "go build -o bin/granola ./cmd/granola",
+    "build:prod": "go build -ldflags=\"-s -w\" -o bin/granola ./cmd/granola",
+    "build:darwin-arm64": "GOOS=darwin GOARCH=arm64 go build -ldflags=\"-s -w\" -o bin/granola-darwin-arm64 ./cmd/granola",
+    "build:darwin-x64": "GOOS=darwin GOARCH=amd64 go build -ldflags=\"-s -w\" -o bin/granola-darwin-amd64 ./cmd/granola",
+    "build:linux-arm64": "GOOS=linux GOARCH=arm64 go build -ldflags=\"-s -w\" -o bin/granola-linux-arm64 ./cmd/granola",
+    "build:linux-x64": "GOOS=linux GOARCH=amd64 go build -ldflags=\"-s -w\" -o bin/granola-linux-amd64 ./cmd/granola",
+    "build:win-x64": "GOOS=windows GOARCH=amd64 go build -ldflags=\"-s -w\" -o bin/granola-windows-amd64.exe ./cmd/granola",
+    "prepublishOnly": "npm run build:prod",
+    "install": "npm run build && node internal/scripts/create-symlink.js"
+  },
+  "keywords": [
+    "granola",
+    "meeting",
+    "notes",
+    "cli",
+    "ai",
+    "summarization",
+    "transcript",
+    "semantic-search",
+    "embeddings"
+  ],
+  "author": "Shane Monastero",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaneOxM/granola-cli-go"
+  },
+  "bugs": {
+    "url": "https://github.com/ShaneOxM/granola-cli-go/issues"
+  },
+  "homepage": "https://github.com/ShaneOxM/granola-cli-go#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "go": ">=1.21.0"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "files": [
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "go.mod",
+    "go.sum",
+    "bin/granola",
+    "cmd/granola/main.go",
+    "cmd/granola/command_helpers.go",
+    "internal/api",
+    "internal/auth",
+    "internal/calendar",
+    "internal/config",
+    "internal/constants.go",
+    "internal/embeddings",
+    "internal/gmail",
+    "internal/inference",
+    "internal/logger",
+    "internal/meeting",
+    "internal/output",
+    "internal/scripts/create-symlink.js",
+    "internal/secrets",
+    "internal/storage",
+    "internal/utils"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "preinstall": "go version || (echo 'Error: Go is required but not installed' && exit 1)"
+}

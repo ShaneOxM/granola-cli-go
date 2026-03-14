@@ -1,0 +1,60 @@
+# Binaries
+bin/granola
+bin/granola.exe
+bin/*.exe
+granola
+
+# Build artifacts
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Cross-platform builds
+bin/granola-*
+bin/*-darwin-*
+bin/*-linux-*
+bin/*-windows-*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.tmp
+*.bak
+*.tgz
+*.tar.gz
+
+# Package
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage.out
+coverage.html
+
+# SaveContext database
+.savecontext/
+*.jsonl
+
+# Memory files
+.memory/
+
+# Generated docs / local doc exports
+.docs/
+docs/generated/
+docs/security/
+internal/private/
