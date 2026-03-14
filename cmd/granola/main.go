@@ -1418,6 +1418,7 @@ func executeAICommand(cmdName string, args []string, aiFunc func(*inference.Clie
 		fmt.Fprintf(os.Stderr, "Error: Inference endpoint or model not configured\n")
 		fmt.Fprintf(os.Stderr, "Run: granola config set base_url <url>\n")
 		fmt.Fprintf(os.Stderr, "Run: granola config set model <model-name>\n")
+		fmt.Fprintf(os.Stderr, "See README sections: Configuration and Embeddings & Semantic Search.\n")
 		os.Exit(1)
 	}
 
@@ -1427,6 +1428,7 @@ func executeAICommand(cmdName string, args []string, aiFunc func(*inference.Clie
 	result, err := aiFunc(inferenceClient, transcriptText.String(), 1000)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		printInferenceSetupHint(err, cfg)
 		os.Exit(1)
 	}
 
@@ -1509,6 +1511,7 @@ func runSearch(args []string) {
 
 	if len(chunks) == 0 {
 		fmt.Println("No embeddings found. Run 'granola embedding backfill' to generate embeddings first.")
+		printEmbeddingSetupHint()
 		return
 	}
 
@@ -1609,6 +1612,8 @@ func runSearch(args []string) {
 
 	if len(filteredResults) == 0 {
 		fmt.Println("No matching results found.")
+		fmt.Println("If results are missing, check `granola embedding status` and run `granola embedding backfill`.")
+		fmt.Println("See README: Embeddings & Semantic Search for Ollama/model setup details.")
 		return
 	}
 
@@ -1634,6 +1639,31 @@ func runSearch(args []string) {
 			fmt.Println()
 		}
 	}
+}
+
+func printInferenceSetupHint(err error, cfg *config.Config) {
+	if err == nil || cfg == nil {
+		return
+	}
+	msg := strings.ToLower(err.Error())
+	if strings.Contains(msg, "connection refused") || strings.Contains(msg, "no such host") || strings.Contains(msg, "timeout") || strings.Contains(msg, "context deadline exceeded") {
+		fmt.Fprintln(os.Stderr)
+		fmt.Fprintln(os.Stderr, "Inference backend hint:")
+		fmt.Fprintf(os.Stderr, "- Current base_url: %s\n", cfg.BaseURL)
+		fmt.Fprintf(os.Stderr, "- Current model: %s\n", cfg.Model)
+		fmt.Fprintln(os.Stderr, "- Make sure your local model backend is running (for example: `ollama serve`).")
+		fmt.Fprintln(os.Stderr, "- Make sure the requested model is installed and available.")
+		fmt.Fprintln(os.Stderr, "- See README: Embeddings & Semantic Search and Configuration.")
+	}
+}
+
+func printEmbeddingSetupHint() {
+	fmt.Println("Embedding setup checklist:")
+	fmt.Println("- Granola meeting data available locally (`granola auth login`, `granola meeting list`) ")
+	fmt.Println("- Ollama running (`ollama serve`)")
+	fmt.Println("- Embedding model installed (`ollama pull nomic-embed-text`)")
+	fmt.Println("- Then rerun `granola embedding backfill`")
+	fmt.Println("See README: Embeddings & Semantic Search.")
 }
 
 func lexicalFallbackResults(query string, chunks []embeddings.ChunkData, limit int) []embeddings.SearchResult {

@@ -123,6 +123,7 @@ granola calendar enrich-meetings
 The Granola skill is now kept in the repo as a source-of-truth file:
 
 - `docs/skills/Granola/SKILL.md`
+- `docs/skills/Granola/Workflows/`
 
 Direct GitHub file:
 - `https://github.com/ShaneOxM/granola-cli-go/blob/main/docs/skills/Granola/SKILL.md`
@@ -147,6 +148,9 @@ That syncs the repo copy to:
 - `~/.codex/skills/Granola/SKILL.md`
 - `~/.claude/skills/Granola/SKILL.md`
 - `~/.factory/skills/Granola/SKILL.md`
+
+It also syncs the referenced workflow files under each local `Workflows/`
+directory.
 
 If one of those tool directories does not exist on the machine, the script skips
 it gracefully and continues.

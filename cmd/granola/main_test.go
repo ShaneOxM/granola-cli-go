@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/ShaneOxM/granola-cli-go/internal/config"
 	"github.com/ShaneOxM/granola-cli-go/internal/embeddings"
 )
 
@@ -76,4 +77,12 @@ func TestBestSplitPoint(t *testing.T) {
 	if split <= 0 || split > 20 {
 		t.Fatalf("unexpected split point %d", split)
 	}
+}
+
+func TestPrintEmbeddingSetupHint(t *testing.T) {
+	printEmbeddingSetupHint()
+}
+
+func TestPrintInferenceSetupHint(t *testing.T) {
+	printInferenceSetupHint(fmt.Errorf("context deadline exceeded"), &config.Config{BaseURL: "http://localhost:11434/v1", Model: "mistral:latest"})
 }
