@@ -98,10 +98,10 @@ func (m *MockRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) 
 
 // MockHTTPHandler is a mock HTTP handler for testing API endpoints
 type MockHTTPHandler struct {
-	mu         sync.RWMutex
-	requests   []MockHTTPRequest
-	responses  []MockHTTPResponse
-	err        error
+	mu        sync.RWMutex
+	requests  []MockHTTPRequest
+	responses []MockHTTPResponse
+	err       error
 }
 
 // MockHTTPRequest represents a recorded HTTP request
