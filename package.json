@@ -1,9 +1,9 @@
 {
   "name": "granola-cli-go",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Command-line interface for Granola meeting notes with semantic search and AI-powered features",
   "bin": {
-    "granola": "./bin/granola.js"
+    "granola": "bin/granola.js"
   },
   "scripts": {
     "build": "go build -o bin/granola ./cmd/granola",
@@ -31,7 +31,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShaneOxM/granola-cli-go"
+    "url": "git+https://github.com/ShaneOxM/granola-cli-go.git"
   },
   "bugs": {
     "url": "https://github.com/ShaneOxM/granola-cli-go/issues"
