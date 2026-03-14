@@ -2,7 +2,7 @@
 bin/granola
 bin/granola.exe
 bin/*.exe
-granola
+/granola
 
 # Build artifacts
 *.exe
