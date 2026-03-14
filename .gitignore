@@ -56,6 +56,5 @@ coverage.html
 # Generated docs / local doc exports
 .docs/
 docs/generated/
-docs/security/
 internal/private/
 dist/

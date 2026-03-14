@@ -118,6 +118,39 @@ granola gmail person someone@example.com --max=10
 granola calendar enrich-meetings
 ```
 
+## Skill File
+
+The Granola skill is now kept in the repo as a source-of-truth file:
+
+- `docs/skills/Granola/SKILL.md`
+
+Direct GitHub file:
+- `https://github.com/ShaneOxM/granola-cli-go/blob/main/docs/skills/Granola/SKILL.md`
+
+Direct raw download:
+- `https://raw.githubusercontent.com/ShaneOxM/granola-cli-go/main/docs/skills/Granola/SKILL.md`
+
+If you want to copy it into your local tool environments, run:
+
+```bash
+./scripts/sync-granola-skill.sh
+```
+
+If you do not want to clone the repo, you can install it directly from GitHub:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ShaneOxM/granola-cli-go/main/scripts/install-granola-skill.sh | bash
+```
+
+That syncs the repo copy to:
+- `~/.config/opencode/skills/Granola/SKILL.md`
+- `~/.codex/skills/Granola/SKILL.md`
+- `~/.claude/skills/Granola/SKILL.md`
+- `~/.factory/skills/Granola/SKILL.md`
+
+If one of those tool directories does not exist on the machine, the script skips
+it gracefully and continues.
+
 ## Configuration
 
 Most users only need configuration for Google setup or optional AI summary settings.
