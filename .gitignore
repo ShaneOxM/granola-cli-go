@@ -58,3 +58,4 @@ coverage.html
 docs/generated/
 docs/security/
 internal/private/
+dist/

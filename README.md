@@ -52,6 +52,23 @@ app installed.
 - Go 1.21 or later if building from source
 - Granola desktop app installed for meeting sync/auth import
 
+### npm / npx
+
+Use npm when you want the packaged CLI experience without manually copying
+binaries.
+
+```bash
+# One-off usage with npx
+npx granola-cli-go meeting list --limit 5
+
+# Global install
+npm install -g granola-cli-go
+granola meeting list --limit 5
+```
+
+The npm package ships prebuilt binaries for supported platforms, so users do
+not need a local Go toolchain for the npm / npx path.
+
 ### Build from Source
 
 ```bash
